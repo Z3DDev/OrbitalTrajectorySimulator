@@ -2,8 +2,8 @@
 Create a program to simulate an orbital trajectory or  use the rocket equation to simulate the timeline of the loss of mass from launch to on orbit and  end of life
 
 # Authors
-Zach Jagoda
-Justin Saborouh
+* Zach Jagoda
+* Justin Saborouh
 
 # Goals
 - To create a functioning program that simulates a spacecraft from launch to it's final destination
