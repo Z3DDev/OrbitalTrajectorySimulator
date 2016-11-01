@@ -10,8 +10,8 @@ import numpy as np
 
 sys.path.append('./Objects/')
 
-from Objects import Craft
-from planets import Planet
+from Object import Craft
+from Planets import Planet
 
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -33,6 +33,7 @@ def drawSphere(xCenter, yCenter, zCenter, r):
     return (x, y, z)
 
 def plot(ship, planets):
+    """3d plots earth/moon/ship interaction"""
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = '3d')
@@ -47,7 +48,7 @@ def plot(ship, planets):
 
     #Planet Trajectory
     for planet in planets:
-        ax.plot(xs = planet.trajectory[0], ys = planet.trajectory[1], zs = planet.trajectory[2], zdir = 'z', label = 'ys=0, zdir=z'))
+        ax.plot(xs = planet.trajectory[0], ys = planet.trajectory[1], zs = planet.trajectory[2], zdir = 'z', label = 'ys=0, zdir=z')
 
     (xs, ys, zs) = drawSphere(0, 0, 0, 6367.4447)
     ax.plot_wireframe(xs, ys, zs, color = "r")
@@ -56,7 +57,8 @@ def plot(ship, planets):
 
 @profile
 def runSimulation(startTime, endTime, step, ship, planets):
-    
+    """Runs orbital simulation given ship and planet objects as well as start/stop times"""
+
     #Calculate Moon and Planet rate of update
     planetStepRate = int(math.ceil(((endTime - startTime) / step) / 100))
 
@@ -65,15 +67,15 @@ def runSimulation(startTime, endTime, step, ship, planets):
         planet.updatePosition(startTime)
         planet.logPosition()
 
-    start  = t.time()
+    start = t.time()
     totalTime = endTime - startTime
 
     #Total Tics
     totalSteps = int((endTime - startTime) / step)
 
-    print("Days in Simulation: {:6.2f}, number of steps: {}".format(totalTime, totalSteps))
+    print("Days in Simulation:{:6.2f} | Number of Steps: {}".format(totalTime, totalSteps))
 
-    for i, time in enumerate(np.arrange(startTime, endTime, step)):
+    for i, time in enumerate(np.arange(startTime, endTime, step)):
 
         #Planet stepRate estimation update
         if (i % planetStepRate == 0):
@@ -99,7 +101,7 @@ def runSimulation(startTime, endTime, step, ship, planets):
 
                 #Calculate Time Left
                 remainingDays = endTime - time
-                remainingPercentage = (1 = timeSinceStart / totalTime)
+                remainingPercentage = (1 - timeSinceStart / totalTime)*100
 
                 #Tics Per Second
                 stepsPerSecond = int(math.ceil( i / (t.time() - start)))
@@ -109,31 +111,31 @@ def runSimulation(startTime, endTime, step, ship, planets):
                 #Convert Reamining Time From Seconds
                 minutes, seconds = divmod(remainingSeconds, 60)
                 hours, minutes = divmod(minutes, 60)
-                print(" Simulation remaining: {:6.2f} days, {:5.2f}%.  Script statistics - steps/s: {:6}, est. time left: {:0>2}:{:0>2}:{:0>2}".format(remainingDays, remainingPercentage, stepsPerSecond, hours, minutes, seconds))
+                print(" Remaining Days in Simulation: {:6.2f}, {:5.2f}% | Steps: {:6} | Est. Time Left: {:0>2}:{:0>2}:{:0>2}".format(remainingDays, remainingPercentage, stepsPerSecond, hours, minutes, seconds))
 
     end = t.time()
     timeElapsed = end - start 
-    print("Final Steps/Second: {0:.2f}".format((totalTime / step) / timeElapsed))
+    print("Average Steps/Second: {0:.2f}".format((totalTime / step) / timeElapsed))
 
     minutes, seconds = divmod(timeElapsed, 60)
     hours, minutes = divmod(minutes, 60)
-    print("Total running time: {:0>2.0f}:{:0>2.0f}:{:0>2.0f}".format(hours, minutes, seconds))
+    print("Total Simulation Time: {:0>2.0f}:{:0>2.0f}:{:0>2.0f}".format(hours, minutes, seconds))
 
 def main():
-    #DeltaT (in Days) for simulations
-    detla_t = np.longdouble(1.0) / (24.0 * 60.0 * 60.0)
+    #delta_t (in Days) for simulations
+    delta_t = np.longdouble(1.0) / (24.0 * 60.0 * 60.0)
 
-    ship = #INSERT SHIP DATA
+    ship = Craft(delta_t, x = 35786, y = 1, z = 1, v_x = 0, v_y = 4.5, v_z = 0, mass = 12)
 
     #Initialize Simulation
-    simulationStart = Time('')
-    simulationEnd = Time('')
+    simulationStart = Time('2015-09-10T00:00:00')
+    simulationEnd = Time('2015-10-10T00:00:00')
 
     if not os.path.isfile('de430.bsp'):
         raise ValueError('de430.bsp Was not found!')
     kernel = SPK.open('de430.bsp')
 
-    planets = #[INSERT PLANET DATA]
+    planets = [Planet(kernel, 399, 399, np.longdouble(5972198600000000000000000)), Planet(kernel, 301, 399, np.longdouble(7.34767309 * 10**22))]
 
     runSimulation(simulationStart.jd, simulationEnd.jd, delta_t, ship, planets)
     plot(ship, [planets[1]])
