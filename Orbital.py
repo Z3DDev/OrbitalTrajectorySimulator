@@ -18,9 +18,16 @@ from mpl_toolkits.mplot3d import Axes3D
 
 def profile(func): return func
 
+#List of Planets
+planetList = ['[1] Mercury', '[2] Venus', '[3] Earth/Moon', '[4] Mars', '[5] Jupiter', '[6] Saturn', '[7] Uranus', '[8] Neptune', '[9] Pluto']
+
+#Define Earth-Planet Simulation
+print '\n'.join(planetList)
+simulationType = input("\nEnter the destination for your spacecraft (assuming it launches from Earth): ")
+
 #Plotting 3D Output
 def drawSphere(xCenter, yCenter, zCenter, r):
-    #Program Drwas the Sphere
+    #Program Draws the Sphere
     u, v = np.mgrid[0:2 * np.pi:20j, 0:np.pi:10j]
     x = np.cos(u) * np.sin(v)
     y = np.sin(u) * np.sin(v)
@@ -33,7 +40,7 @@ def drawSphere(xCenter, yCenter, zCenter, r):
     return (x, y, z)
 
 def plot(ship, planets):
-    """3d plots earth/moon/ship interaction"""
+    """3d plots earth/celestial body/ship interaction"""
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = '3d')
@@ -50,16 +57,17 @@ def plot(ship, planets):
     for planet in planets:
         ax.plot(xs = planet.trajectory[0], ys = planet.trajectory[1], zs = planet.trajectory[2], zdir = 'z', label = 'ys=0, zdir=z')
 
-    (xs, ys, zs) = drawSphere(0, 0, 0, 6367.4447)
+    (xs, ys, zs) = drawSphere(0, 0, 0, 6367.5)
     ax.plot_wireframe(xs, ys, zs, color = "r")
 
     plt.show()
+        
 
 @profile
 def runSimulation(startTime, endTime, step, ship, planets):
     """Runs orbital simulation given ship and planet objects as well as start/stop times"""
 
-    #Calculate Moon and Planet rate of update
+    #Calculate Celestial Body and Planet rate of update
     planetStepRate = int(math.ceil(((endTime - startTime) / step) / 100))
 
     #Initialize Planets Positions
@@ -111,7 +119,7 @@ def runSimulation(startTime, endTime, step, ship, planets):
                 #Convert Reamining Time From Seconds
                 minutes, seconds = divmod(remainingSeconds, 60)
                 hours, minutes = divmod(minutes, 60)
-                print(" Remaining Days in Simulation: {:6.2f}, {:5.2f}% | Steps: {:6} | Est. Time Left: {:0>2}:{:0>2}:{:0>2}".format(remainingDays, remainingPercentage, stepsPerSecond, hours, minutes, seconds))
+                print(" ---> Remaining Days in Simulation: {:6.2f}, {:5.2f}% | Steps:{:6} | Est. Time Left: {:0>2}:{:0>2}:{:0>2}".format(remainingDays, remainingPercentage, stepsPerSecond, hours, minutes, seconds))
 
     end = t.time()
     timeElapsed = end - start 
@@ -135,7 +143,40 @@ def main():
         raise ValueError('de430.bsp Was not found!')
     kernel = SPK.open('de430.bsp')
 
-    planets = [Planet(kernel, 399, 399, np.longdouble(5972198600000000000000000)), Planet(kernel, 301, 399, np.longdouble(7.34767309 * 10**22))]
+    if simulationType == 1:
+        planets = [#Planet(kernel, 0, 0, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 199, 199, np.longdouble(3.285*10**23)), Planet(kernel, 399, 399, np.longdouble(5.972*10**24))]
+
+    if simulationType == 2:
+        planets = [#Planet(kernel, 10, 10, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 299, 299, np.longdouble(4.867*10**24)), Planet(kernel, 399, 399, np.longdouble(5.972*10**24))]
+
+    if simulationType == 3:
+        planets = [#Planet(kernel, 10, 10, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 399, 399, np.longdouble(5.972*10**24)), Planet(kernel, 301, 399, np.longdouble(7.34767309*10**22))]
+    
+    if simulationType == 4:
+        planets = [#Planet(kernel, 10, 10, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 399, 399, np.longdouble(5.972*10**24)), Planet(kernel, 499, 499, np.longdouble(6.39*10**23))]
+
+    if simulationType == 5:
+        planets = [#Planet(kernel, 10, 10, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 399, 399, np.longdouble(5.972*10**24)), Planet(kernel, 399, 399, np.longdouble(1.898*10**27))]
+
+    if simulationType == 6:
+        planets = [#Planet(kernel, 10, 10, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 399, 399, np.longdouble(5.972*10**24)), Planet(kernel, 399, 399, np.longdouble(1.024*10**26))]
+
+    if simulationType == 7:
+        planets = [#Planet(kernel, 10, 10, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 399, 399, np.longdouble(5.972*10**24)), Planet(kernel, 399, 399, np.longdouble(5.683*10**26))]
+
+    if simulationType == 8:
+        planets = [#Planet(kernel, 10, 10, np.longdouble(1.989*10**30)),
+                    Planet(kernel, 399, 399, np.longdouble(5.972*10**24)), Planet(kernel, 399, 399, np.longdouble(8.681*10**25))]
+    
+    #else
+     #planets = [Planet(kernel, 399, 399, np.longdouble(5972198600000000000000000)), Planet(null)]
 
     runSimulation(simulationStart.jd, simulationEnd.jd, delta_t, ship, planets)
     plot(ship, [planets[1]])
