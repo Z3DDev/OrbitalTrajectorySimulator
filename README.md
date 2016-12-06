@@ -1,9 +1,14 @@
+![My image](jagod101.github.com/OrbitalTrajectorySimulator/Images/Logo.png)
+
 # Orbital Trajectory Simulator
 Create a program to simulate an orbital trajectory or  use the rocket equation to simulate the timeline of the loss of mass from launch to on orbit and  end of life
 
 ## Authors
 * Zach Jagoda
 * Justin Saborouh
+
+## Professor
+* Mirella Valencia
 
 ## Goals
 - [X] To create a functioning program that simulates a spacecraft from launch to it's final destination
@@ -19,11 +24,11 @@ Provide the substance of your research that satisfies the prompt (this will be t
 Conclude your findings, what you learned and anything else relating to the project in particular
 Generally your deliverable should be on the order of magnitude of 10-12 pages (not including bibliography, cover page, etc…). There is no penalty for turning in more than 12 pages. If you are working in a group, each person must provide their own DISTINCT report (I expect 28 separate reports). If you collaborate on anything, it is fine to duplicate it in your reports, however you MUST individually provide which section of the collaborated work is a result of your input. Give and take credit where it is due.
 We will also have Project Presentations on December 8, 2016 for the duration of the class. Regardless of group or individual project, everyone will need to prepare to present 5 minutes per person. (A 2 person project will take 10 minutes to present, vs an individual will speak for 5 minutes flat) I suggest the presentation be in powerpoint format however that is not required if you have an alternative method of presentation. Please send me anything that you will be presenting before class on 12/8 so that we can operate off the computer in the classroom from my account and not have to bother with the hassle of switching medium.
+
 ###Important dates to keep in mind:
-- Last day to change prompt assignment – 9/29 7pm
-- Project outline due – 10/6 8pm (after Library lecture)
-- Draft One due – 11/3 7pm
-- Final Draft due and Project Presentations – 12/8 7pm
+- [X] Project Outline – 10/6/16
+- [X] Draft One – 11/3/16
+- [ ] Final Draft/Project Presentation – 12/8/16
 
 ## Project Prompt
 Create a program to simulate an orbital trajectory or use the rocket equation to simulate the timeline of the loss of mass from launch to on orbit and end of life. Provide code as part of deliverable. Also included as the substance of the deliverable, a report that discusses the current tools used in the industry to optimize the orbital trajectories that are implemented on Earth based and interplanetary mission designs. What challenges do these programs come across and what has been the history of better perfecting the way orbits and mass/power simulations are performed? What solution to some of these problems can you work to innovate to continue enhancing these existent tools?
@@ -46,3 +51,5 @@ Create a program to simulate an orbital trajectory or use the rocket equation to
   - To change your branch use 'git checkout <insert branch name>'
 
 ## Sources
+* Orbital Mechanics for Engineering Students (Howard Curtis)
+* 
