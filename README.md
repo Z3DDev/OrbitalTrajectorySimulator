@@ -6,9 +6,9 @@ Create a program to simulate an orbital trajectory or  use the rocket equation t
 * Justin Saborouh
 
 ## Goals
-- [*]To create a functioning program that simulates a spacecraft from launch to it's final destination
-- [*]Add graphical interface to script to give better illustration of Orbital Trajectory of the Spacecraft in the simulation
-- [ ]Add multiple variations to destination: expand off of Earth to Moon (ex: Earth to Mars/Jupiter/Saturn/etc...)
+- [X] To create a functioning program that simulates a spacecraft from launch to it's final destination
+- [X] Add graphical interface to script to give better illustration of Orbital Trajectory of the Spacecraft in the simulation
+- [ ] Add multiple variations to destination: expand off of Earth to Moon (ex: Earth to Mars/Jupiter/Saturn/etc...)
 
 ## Project Guidelines
 The project you are assigned to for this class is in the Assigned Prompts section of this project assignment. This can be a partner, group or an individual project. Use this as an opportunity to reflect on how you already know you work best and then I suggest you choose the OPPOSITE to help yourself improve how you work as a team member or individually. Regardless of project prompt you are assigned, you will be required to turn in a deliverable at the end of the semester on the day that you present. The individual prompts will underline specific items to be included in the substance part of the deliverable. However generally the expectation is a beginning, middle and end in terms of the following but is not limited to:
