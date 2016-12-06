@@ -1,4 +1,4 @@
-![Orbital Trajectory Simulator Logo](jagod101.github.com/OrbitalTrajectorySimulator/Images/Logo.jpg)
+![Orbital Trajectory Simulator Logo](https://raw.githubusercontent.com/jagod101/OrbitalTrajectorySimulator/dev/Images/Logo.jpg)
 
 # Orbital Trajectory Simulator
 Create a program to simulate an orbital trajectory or  use the rocket equation to simulate the timeline of the loss of mass from launch to on orbit and  end of life
