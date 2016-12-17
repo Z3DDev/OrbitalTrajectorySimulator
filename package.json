@@ -1,0 +1,19 @@
+{
+  "name": "orbitaltrajectorysimulator",
+  "version": "1.0.0",
+  "description": "to simulate an orbital trajectory or use the rocket equation to simulate the timeline of the loss of mass from launch to on orbit and end of life",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jagod101/OrbitalTrajectorySimulator.git"
+  },
+  "author": "Zach Jagoda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jagod101/OrbitalTrajectorySimulator/issues"
+  },
+  "homepage": "https://github.com/Jagod101/OrbitalTrajectorySimulator#readme"
+}
