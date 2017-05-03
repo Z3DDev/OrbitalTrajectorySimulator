@@ -140,8 +140,10 @@ def main():
     simulationEnd = Time('2015-10-10T00:00:00')
 
     if not os.path.isfile('de430.bsp'):
-        raise ValueError('de430.bsp Was not found!')
+        raise ValueError('de430.bsp was not found!')
     kernel = SPK.open('de430.bsp')
+    #marsKernel = SPK.open('mar097.bsp')
+
 
     if simulationType == 1:
         planets = [#Planet(kernel, 0, 0, np.longdouble(1.989*10**30)),
